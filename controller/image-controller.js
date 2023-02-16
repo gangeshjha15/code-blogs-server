@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 // Blog Image Uploader
 
-const process = dotenv.config();
+dotenv.config();
+
 let gfs, gridfsBucket;
 const conn = mongoose.connection;
 conn.once('open', ()=>{
@@ -14,10 +15,11 @@ conn.once('open', ()=>{
     gfs = grid(conn.db, mongoose.mongo);
     gfs.collection('fs');
 
-})
+});
 
+const ImageUrl = process.env.IMAGE_URL;
 
-const url = `${process.env.IMAGE_URL}/api`
+const url = `${ImageUrl}/api`
 export const uploadImage = async(req, res)=>{
     if(!req.file){
         return res.status(404).json({msg:"File not found! Please Try again later"})
