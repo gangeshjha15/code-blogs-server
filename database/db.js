@@ -9,6 +9,7 @@ const Connection = async(URL)=>{
     } catch (error) {
         console.log("Error while connecting with the database "+ error);
     }
-}
+};
+mongoose.set('strictQuery', false);
 
 export default Connection;
