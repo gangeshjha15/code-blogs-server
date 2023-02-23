@@ -40,6 +40,19 @@ export const getAllPosts = async(req, res)=>{
     }
 }
 
+//get all post of particular user
+export const getUserPosts = async(req, res)=>{
+    try {
+        let posts = await Post.find({user: req.params.id});
+        if(posts)
+            return res.status(200).json(posts);
+        else
+            return res.status(404).json({msg: "No post available!"});
+    } catch (error) {
+        return res.status(500).json({msg: error.message});
+    }
+}
+
 // fetch post by id
 export const getPost = async (req, res)=>{
     try {

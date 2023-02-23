@@ -2,7 +2,7 @@ import express from 'express'
 import { signupUser, loginUser } from '../controller/user-controller.js';
 import { uploadImage, getImage } from '../controller/image-controller.js';
 import  upload  from '../middleware/upload.js';
-import { createPost, getAllPosts, getPost, updatePost, deletePost, addLike, removeLike } from '../controller/post-controller.js';
+import { createPost, getAllPosts, getPost, updatePost, deletePost, addLike, removeLike, getUserPosts } from '../controller/post-controller.js';
 import { authenticateToken } from '../middleware/authenticateToken.js';
 import { addComment, getComment, deleteComment } from '../controller/comment-controller.js';
 
@@ -25,6 +25,9 @@ router.post('/create', authenticateToken , createPost);
 
 //fetch all posts
 router.get('/posts', getAllPosts);
+
+//fetch user all posts
+router.get('/posts/:id', getUserPosts);
 
 //fetch post by id
 router.get('/post/:id', getPost);
