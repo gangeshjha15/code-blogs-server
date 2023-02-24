@@ -1,5 +1,5 @@
 import express from 'express'
-import { signupUser, loginUser } from '../controller/user-controller.js';
+import { signupUser, loginUser, emailSend, changePassword } from '../controller/user-controller.js';
 import { uploadImage, getImage } from '../controller/image-controller.js';
 import  upload  from '../middleware/upload.js';
 import { createPost, getAllPosts, getPost, updatePost, deletePost, addLike, removeLike, getUserPosts } from '../controller/post-controller.js';
@@ -52,5 +52,11 @@ router.put('/like', authenticateToken, addLike);
 
 //Add Like
 router.put('/dislike', authenticateToken, removeLike);
+
+//sending email for otp
+router.post('/email-send' , emailSend);
+
+// changing password
+router.post('/change-password', changePassword);
 
 export default router;
