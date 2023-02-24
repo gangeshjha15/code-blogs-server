@@ -54,9 +54,9 @@ router.put('/like', authenticateToken, addLike);
 router.put('/dislike', authenticateToken, removeLike);
 
 //sending email for otp
-router.post('/email-send' , emailSend);
+router.post('/email-send', authenticateToken, emailSend);
 
 // changing password
-router.post('/change-password', changePassword);
+router.post('/change-password', authenticateToken, changePassword);
 
 export default router;
