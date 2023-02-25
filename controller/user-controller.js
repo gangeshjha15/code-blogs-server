@@ -89,7 +89,6 @@ export const emailSend = async (req, res)=>{
             code: otpCode,
             expireIn: new Date().getTime() + 300*1000
         })
-        
         let otpResponse = await otpData.save();
         mailer(req.body.email, otpCode);
         return res.status(200).json({msg: "Otp send successfully!"});
