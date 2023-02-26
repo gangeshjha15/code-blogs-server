@@ -1,4 +1,3 @@
-import Comment from "../modal/comment.js";
 import Post from "../modal/post.js";
 
 
