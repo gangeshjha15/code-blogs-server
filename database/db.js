@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const Connection = async(URL)=>{
     
     try {
-        mongoose.connect(URL, {useNewUrlParser: true})
+        mongoose.connect(URL, {useNewUrlParser: true});
         console.log("Database Connected Successfully");
         
     } catch (error) {
@@ -11,5 +11,6 @@ const Connection = async(URL)=>{
     }
 };
 mongoose.set('strictQuery', false);
+
 
 export default Connection;

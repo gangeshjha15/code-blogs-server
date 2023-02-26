@@ -100,10 +100,10 @@ export const emailSend = async (req, res)=>{
 
 //User change password
 export const changePassword = async (req, res)=>{
-    const {email, otpCode, password} = req.body;
+    const {email, otpcode, password} = req.body;
     try {
-        let data = await Otp.find({email, code: otpCode});
-        if(!data){
+        let data = await Otp.find({email, code: otpcode});
+        if(data.length == 0 || data[0].code !== otpcode){
             return res.status(404).json({msg: "Invalid Otp!"});
         }
         let currentTime = new Date().getTime();
