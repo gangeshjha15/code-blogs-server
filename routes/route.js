@@ -2,7 +2,7 @@ import express from 'express'
 import { signupUser, loginUser, emailSend, changePassword } from '../controller/user-controller.js';
 import { uploadImage, getImage } from '../controller/image-controller.js';
 import  upload  from '../middleware/upload.js';
-import { createPost, getAllPosts, getPost, updatePost, deletePost, addLike, removeLike, getUserPosts } from '../controller/post-controller.js';
+import { createPost, getAllPosts, getPost, updatePost, deletePost, addLike, removeLike, getUserPosts, saveBlog, removeBlog } from '../controller/post-controller.js';
 import { authenticateToken } from '../middleware/authenticateToken.js';
 import { addComment, getComment, deleteComment } from '../controller/comment-controller.js';
 
@@ -58,5 +58,11 @@ router.post('/email-send', emailSend);
 
 // changing password
 router.post('/change-password', changePassword);
+
+// bookmark blog
+router.post('/save-blog', saveBlog);
+
+// remove bookmark blog
+router.post('/remove-blog', removeBlog);
 
 export default router;

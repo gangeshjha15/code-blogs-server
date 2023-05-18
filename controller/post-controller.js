@@ -1,5 +1,6 @@
 import Post from "../modal/post.js";
 import User from "../modal/user.js";
+import SaveBlog from "../modal/saveBlog.js";
 
 // Create new post
 export const createPost = async (req, res)=>{
@@ -124,6 +125,45 @@ export const removeLike = async (req, res)=>{
 
 
         return res.status(200).json({post, msg: 'Like Removed Successfully!'});
+    } catch (error) {
+        return res.status(500).json({msg: error.message});
+    }
+}
+
+//save blog working
+export const saveBlog = async(req, res)=>{
+    try {
+        console.log("1");
+        let data = await SaveBlog.findOne({userId: req.body.userId});
+        console.log("2");
+        
+        if(!data){
+            data = new SaveBlog();
+            data.userId = req.body.userId;
+            data.blogId = req.body.blogId;
+            data = await data.save();
+        } else{
+            data = await SaveBlog.findOneAndUpdate(req.body.userId, {
+                $push: {blogId: req.body.blogId}
+            }, { new: true })
+        }
+        
+        console.log("8");
+        return res.status(200).json({data, msg: 'Post bookmarked successfully!'});
+    } catch (error) {
+        return res.status(500).json({msg: error.message});
+    }
+}
+
+//r remove save blog
+export const removeBlog = async (req, res)=>{
+    try {
+        const post = await SaveBlog.findOneAndUpdate(req.body.userId, {
+            $pull: {blogId: req.body.blogId}
+        }, { new:true });
+
+
+        return res.status(200).json({post, msg: 'Removed bookmark Successfully!'});
     } catch (error) {
         return res.status(500).json({msg: error.message});
     }
