@@ -158,12 +158,12 @@ export const saveBlog = async(req, res)=>{
 //remove save blog
 export const removeBlog = async (req, res)=>{
     try {
-        const post = await SaveBlog.findOneAndUpdate(req.body.userId, {
+        const data = await SaveBlog.findOneAndUpdate(req.body.userId, {
             $pull: {blogId: req.body.blogId}
         }, { new:true });
 
 
-        return res.status(200).json({post, msg: 'Removed bookmark Successfully!'});
+        return res.status(200).json({data, msg: 'Removed bookmark Successfully!'});
     } catch (error) {
         return res.status(500).json({msg: error.message});
     }
