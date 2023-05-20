@@ -173,8 +173,25 @@ export const removeBlog = async (req, res)=>{
 export const getBookmarkBlog = async(req, res)=>{
     try {
         let blogs = await SaveBlog.findOne({userId: req.params.id});
-        if(blogs)
+        if(blogs){
             return res.status(200).json(blogs);
+
+        }
+        else
+            return res.status(404).json({msg: "No Bookmarked post is available for this user"});
+    } catch (error) {
+        return res.status(500).json({msg: error.message});
+    }
+}
+//get all bookmark blog
+export const getAllBookmarkBlog = async(req, res)=>{
+    try {
+        let blogs = await SaveBlog.findOne({userId: req.params.id});
+        if(blogs){
+            let blogDetails = await Post.find({_id: blogs.blogId});
+            return res.status(200).json(blogDetails);
+
+        }
         else
             return res.status(404).json({msg: "No Bookmarked post is available for this user"});
     } catch (error) {

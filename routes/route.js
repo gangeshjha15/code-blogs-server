@@ -2,7 +2,7 @@ import express from 'express'
 import { signupUser, loginUser, emailSend, changePassword } from '../controller/user-controller.js';
 import { uploadImage, getImage } from '../controller/image-controller.js';
 import  upload  from '../middleware/upload.js';
-import { createPost, getAllPosts, getPost, updatePost, deletePost, addLike, removeLike, getUserPosts, saveBlog, removeBlog, getBookmarkBlog } from '../controller/post-controller.js';
+import { createPost, getAllPosts, getPost, updatePost, deletePost, addLike, removeLike, getUserPosts, saveBlog, removeBlog, getBookmarkBlog, getAllBookmarkBlog } from '../controller/post-controller.js';
 import { authenticateToken } from '../middleware/authenticateToken.js';
 import { addComment, getComment, deleteComment } from '../controller/comment-controller.js';
 
@@ -67,5 +67,8 @@ router.post('/remove-blog', removeBlog);
 
 // get bookmarked post
 router.get('/bookmark-blogs/:id', getBookmarkBlog);
+
+// get All bookmarked post
+router.get('/all-bookmark-blogs/:id', getAllBookmarkBlog);
 
 export default router;
